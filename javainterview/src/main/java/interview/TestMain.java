@@ -95,17 +95,5 @@ public class TestMain {
 		scan.close();
 		return details;
 	}
-
-	/*
-	 * public void
-	 * calculateAverageAmountBasedOnCountryAndCreditRating(List<AccountDetail>
-	 * details) { Function<AccountDetail, List<Object>> compositeKey = accountDetail
-	 * -> Arrays .<Object>asList(accountDetail.getCountry(),
-	 * accountDetail.getCreditRating());
-	 * 
-	 * details.stream().collect(Collectors.groupingBy(compositeKey,
-	 * Collectors.reducing(op))); // averagingDouble(AccountDetail::getAmount)));
-	 * 
-	 * }
-	 */
+	
 }

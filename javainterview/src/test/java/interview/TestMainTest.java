@@ -30,6 +30,17 @@ public class TestMainTest {
 		assertEquals(expectedAccountDetails().get(0).toString(), readFile.get(0).toString());
 
 	}
+	
+	@Test(expected = FileNotFoundException.class)
+	public void testReadFile_shouldFail() throws FileNotFoundException {
+		// given
+		String path = "src/test/resources/random/FILE.DAT.txt";
+
+		main = new TestMain();
+
+		// when
+		main.readFile(path);
+	}
 
 	@Test
 	public void testCalculateAmountInEur_ShouldSucceed() {
@@ -64,12 +75,33 @@ public class TestMainTest {
 				calculateAverageAmountInEur.get(0).toString());
 
 	}
+	
+	@Test
+	public void testCalculateAverageAmountInEur_shouldReplaceCountryNameWithCityName() throws FileNotFoundException {
+		// given
+		String path = "src/test/resources/FILE.DAT.txt";
+		main = new TestMain();
+
+		// when
+		List<CountryCreditStatistic> calculateAverageAmountInEur = main.calculateAverageAmountInEur(path);
+
+		// then
+		assertEquals(expectedcalculateAverageAmountInEur().get(2).toString(),
+				calculateAverageAmountInEur.get(2).toString());
+
+	}
 
 	private List<CountryCreditStatistic> expectedcalculateAverageAmountInEur() {
 
 		List<CountryCreditStatistic> countryCreditStatistics = new ArrayList<CountryCreditStatistic>();
 		countryCreditStatistics.add(CountryCreditStatistic.builder().country("NOR").creditRating("A").currency("EUR")
-				.averageAmount(new BigDecimal("885652691.45580")).build());
+				.averageAmount(new BigDecimal("885652691.45580")).build());	
+		
+		countryCreditStatistics.add(CountryCreditStatistic.builder().country("NOR").creditRating("B").currency("EUR")
+				.averageAmount(new BigDecimal("442586667.01723")).build());
+				
+		countryCreditStatistics.add(CountryCreditStatistic.builder().country("London").creditRating("-").currency("EUR")
+				.averageAmount(new BigDecimal("643254.77832")).build());
 		return countryCreditStatistics;
 	}
 
