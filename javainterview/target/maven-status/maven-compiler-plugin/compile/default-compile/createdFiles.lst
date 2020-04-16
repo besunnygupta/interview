@@ -1,1 +1,6 @@
-TestMain.class
+model\CountryCreditStatistic.class
+model\Currency.class
+model\AccountDetail.class
+model\CountryCreditStatistic$CountryCreditStatisticBuilder.class
+interview\TestMain.class
+model\AccountDetail$AccountDetailBuilder.class
